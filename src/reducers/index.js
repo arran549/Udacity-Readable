@@ -17,5 +17,5 @@ function posts (state = initialPostsState, action) {
 }
 
 export default combineReducers({ 
-    posts, 
+    posts
 });
