@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Posts from './components/posts/Posts'
 import { getCategories } from './readableAPI'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
 
@@ -31,6 +33,7 @@ class App extends Component {
             </p>
           </div>
         )} />
+        <Route path="/posts" render={() => (<Posts></Posts>) } />
       </div>
     );
   }
