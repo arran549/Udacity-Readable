@@ -3,7 +3,7 @@ import { PageHeader, Panel, Button, Badge, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import VoteOnPost from './VoteOnPost'
 import PostComments from './PostComments'
-import Moment from 'react-moment'
+import Timestamp from  './Timestamp'
 
 
 class Post extends Component {
@@ -11,8 +11,6 @@ class Post extends Component {
     render() {
 
         const { post } = this.props;
-
-        const timestamp = new Date(post.timestamp);
 
         return (
             <div key={post.id}>
@@ -23,7 +21,7 @@ class Post extends Component {
                     <Row>
                         <Col md={8}>
                             <p>{post.body}</p>
-                            <p><small>Written by: <b>{post.author}</b> | <i><Moment date={timestamp} format="ddd DD MMM @ HH:mm"></Moment></i> </small> </p>
+                            <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp}></Timestamp></i></small></p>
                         </Col>
                         <Col md={2}>
                             <PostComments post={post}></PostComments>
