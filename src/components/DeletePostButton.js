@@ -27,9 +27,9 @@ class DeletePostButton extends Component {
     }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state, props) => ({
 
-}
+})
 
 const mapDispatchToProps = dispatch => ({
     deletePost: (id) => dispatch(deletePostActionCreator(id))
