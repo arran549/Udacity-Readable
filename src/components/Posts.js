@@ -23,27 +23,28 @@ class Posts extends React.Component {
         return (
             <div>
                 <PageHeader>Posts</PageHeader>
-                <ol>
                 {  this.props.allPosts.map( (post) => ( 
-                    <Panel>
-                        <Panel.Heading key={post.id}>{post.title}</Panel.Heading>
-                        <Panel.Body>
-                        <br />
-                        <Row>
-                            <Col md={8}>{post.body}</Col>
-                            <Col md={2}>
-                                <Badge>Comments: {post.commentCount}</Badge>
-                                
-                            </Col>
-                            <Col>
-                                <VoteOnPost post={post}></VoteOnPost>
-                            </Col>
-                        </Row>
-                        </Panel.Body>
-                        
-                    </Panel>
+                    <div key={post.id}>
+                        <Panel>
+                            <Panel.Heading>{post.title}</Panel.Heading>
+                            <Panel.Body>
+                            <br />
+                            <Row>
+                                <Col md={8}>{post.body}</Col>
+                                <Col md={2}>
+                                    <Badge>Comments: {post.commentCount}</Badge>
+                                    
+                                </Col>
+                                <Col>
+                                    <VoteOnPost post={post}></VoteOnPost>
+                                </Col>
+                            </Row>
+                            </Panel.Body>
+                            
+                        </Panel>
+                    </div>
                 ))}
-                </ol>
+                
             </div>
         )
     }

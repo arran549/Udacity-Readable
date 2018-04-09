@@ -5,7 +5,7 @@ import { combineReducers } from 'redux'
 //    REMOVE_FROM_CALENDAR
 //} from '../actions'
 
-import { FETCH_ALL_POSTS } from '../actions/posts.actions'
+import { FETCH_ALL_POSTS, VOTE_ON_POST } from '../actions/posts.actions'
 
 const initialPostsState = {
     all: []
@@ -18,7 +18,17 @@ function posts (state = initialPostsState, action) {
                 ...state,
                 all: action.posts
             }
-            break;
+        }
+        case VOTE_ON_POST: {
+
+            const increment = action.option === 'upVote' ? 1 : -1
+
+            console.log('vote', action.option);
+
+            return {
+                ...state,
+                all: state.all.map((post, i) => post.id === action.id ? {...post, voteScore: post.voteScore += increment} : post )
+            }
         }
         default:
             return state;

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updatePostActionCreator } from '../actions/posts.actions'
+import { voteOnPostActionCreator } from '../actions/posts.actions'
 import { votePostUp, votePostDown } from '../readableAPI'
-import { PageHeader, Panel, Button, Badge, Row, Col } from 'react-bootstrap'
+import { PageHeader, Button, Badge, } from 'react-bootstrap'
 
 class VoteOnPost extends React.Component {
 
@@ -10,8 +10,14 @@ class VoteOnPost extends React.Component {
         
     }
 
-    upVote () {
-        console.log('clicked');
+    upVote (id) {
+        console.log('clicked', id);
+        votePostUp(id).then((res) => {
+            console.log("result", id)
+            this.props.votePostUp(id, 'upVote')
+        })
+
+        
     }
 
     render () {
@@ -21,7 +27,7 @@ class VoteOnPost extends React.Component {
         return (
             <div>
                 <Badge>{post.voteScore}</Badge>
-                <Button bsStyle="primary" onClick={this.upVote}>Vote Up</Button>
+                <Button bsStyle="primary" onClick={() => this.upVote(post.id)}>Vote Up</Button>
                 <Button bsStyle="default">Vote Down</Button>
             </div>
         )
@@ -34,7 +40,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    votePostUp: (id, option) => dispatch(voteOnPostActionCreator(id, option))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(VoteOnPost)
