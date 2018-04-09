@@ -2,9 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
 import { getAllPosts } from './../readableAPI'
-import { PageHeader, Panel, Button, Row, Col } from 'react-bootstrap'
+import { PageHeader } from 'react-bootstrap'
 import { fetchAllPostsActionCreator } from '../actions/posts.actions'
-import { selectedCategory } from '../actions/navigation.actions'
 
 
 class Posts extends React.Component {
