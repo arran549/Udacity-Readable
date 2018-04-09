@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import VoteOnPost from './VoteOnPost'
 import { getAllPosts } from './../readableAPI'
 import { PageHeader, Panel, Button, Badge, Row, Col } from 'react-bootstrap'
 import { fetchAllPostsActionCreator } from '../actions/posts.actions'
@@ -35,10 +36,7 @@ class Posts extends React.Component {
                                 
                             </Col>
                             <Col>
-                                    <Badge>{post.voteScore}</Badge>
-                                    <Button bsStyle="primary" >Vote Up</Button>
-                                    <Button bsStyle="default">Vote Down</Button>
-                                    
+                                <VoteOnPost post={post}></VoteOnPost>
                             </Col>
                         </Row>
                         </Panel.Body>
@@ -52,8 +50,7 @@ class Posts extends React.Component {
 
 }
 
-const mapStateToProps = (state, props) => (
-    {
+const mapStateToProps = (state, props) => ({
     allPosts: state.posts.all || []
 })
 
