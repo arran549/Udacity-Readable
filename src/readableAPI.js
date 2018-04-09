@@ -37,10 +37,12 @@ export const getPost = (id) => {
 }
 
 export const votePostUp = (id) => {
-    return fetch(`${api}/posts/id`, {
+    return fetch(`${api}/posts/${id}`, {
         method: 'POST',
         headers,
-        body: 'upVote'
+        body: {
+            option: 'upVote'
+        }
     })
 }
 
@@ -48,7 +50,9 @@ export const votePostDown = (id) => {
     return  fetch(`${api}/posts/id`, {
         method: 'POST',
         headers,
-        body: 'downVote'
+        body: {
+            option: 'downVote'
+        }
     })
 }
 
