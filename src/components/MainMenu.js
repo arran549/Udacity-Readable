@@ -25,7 +25,7 @@ class MainMenu extends Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">Readable</a>
+                            <a href="/">Readable</a>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
