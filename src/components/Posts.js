@@ -1,19 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
-import { getAllPosts } from './../readableAPI'
 import { PageHeader } from 'react-bootstrap'
-import { fetchAllPostsActionCreator } from '../actions/posts.actions'
+import { selectCategoryActionCreator } from '../actions/navigation.actions'
+
 
 
 class Posts extends React.Component {
 
     componentDidMount() {
 
-        getAllPosts().then((posts) => {
-            console.log('posts', posts)
-            this.props.getPosts(posts)
-        })
+        const { match: { params } } = this.props;
+
+        if(params.category) {
+            this.props.selectCategory(params.category)
+        }
     }
 
     render() {
@@ -27,20 +28,16 @@ class Posts extends React.Component {
                     </div>
 
                 ))}
-                
             </div>
         )
     }
-
 }
 
 const mapStateToProps = (state, props) => ({
     allPosts: state.posts.all || [],
-    selectedCategory: state.navigation.selectedCategory
 })
 
 const mapDispatchToProps = dispatch => ({
-    getPosts: (posts) => dispatch(fetchAllPostsActionCreator(posts))
-    
+    selectCategory: (selectedCategory) => dispatch(selectCategoryActionCreator(selectedCategory))    
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)
