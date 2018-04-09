@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { PageHeader, Panel, Button, Badge, Row, Col } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import { Panel, Badge, Row, Col } from 'react-bootstrap'
 import VoteOnPost from './VoteOnPost'
 import PostComments from './PostComments'
 import Timestamp from  './Timestamp'

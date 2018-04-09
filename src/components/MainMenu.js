@@ -12,7 +12,6 @@ class MainMenu extends Component {
     componentDidMount() {
         getCategories().then((res) => {
             this.setState({categories: res})
-            //this.state.categories = res;
         })
     }
 

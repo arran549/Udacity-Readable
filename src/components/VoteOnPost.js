@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { voteOnPostActionCreator } from '../actions/posts.actions'
 import { votePost } from '../readableAPI'
-import { PageHeader, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 class VoteOnPost extends React.Component {
 
