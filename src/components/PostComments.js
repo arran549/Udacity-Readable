@@ -10,9 +10,7 @@ class PostComments extends React.Component {
 
     render() {
         return (
-            <div>
-                <Badge>Comments: {this.props.post.commentCount}</Badge>
-            </div>   
+            <span><Badge>Comments: {this.props.post.commentCount}</Badge></span>
         );
     }
 
