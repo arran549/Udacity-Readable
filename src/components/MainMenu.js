@@ -30,10 +30,10 @@ class MainMenu extends Component {
                             <a href="/">Readable</a>
                         </Navbar.Brand>
                     </Navbar.Header>
-                    <Nav activeKey={this.props.selectedCategory} onSelect={(k) => this.onSelectCategory(k)}>
+                    <Nav >
                         {this.state.categories.map((cat) => (
-                            <LinkContainer key={cat.path}  to={"/" + cat.path}>
-                                <NavItem eventKey={cat.name} >{cat.name}</NavItem>
+                            <LinkContainer key={cat.path}  to={"/" + cat.path} active={this.props.selectedCategory === cat.path} onClick={() => this.onSelectCategory(cat.path)}>
+                                <NavItem>{cat.name}</NavItem>
                             </LinkContainer>
                         ))}
                     </Nav>
