@@ -18,8 +18,6 @@ class Posts extends React.Component {
 
     render() {
 
-        //console.log('Posts.Props: ', this.props);
-
         return (
             <div>
                 <PageHeader>Posts</PageHeader>
