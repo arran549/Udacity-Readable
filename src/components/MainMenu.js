@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { getCategories } from './../readableAPI'
+import { selectCategoryActionCreator } from '../actions/navigation.actions'
 
 class MainMenu extends Component {
     state = { 
@@ -15,6 +16,10 @@ class MainMenu extends Component {
         })
     }
 
+    onSelectCategory(selectedCategory) {
+        this.props.selectCategory(selectedCategory);
+    }
+
     render() {
         return (
             <div>
@@ -26,7 +31,7 @@ class MainMenu extends Component {
                     </Navbar.Header>
                     <Nav>
                         {this.state.categories.map((cat) => (
-                            <NavItem eventKey={1}>{cat.name}</NavItem>
+                            <NavItem eventKey={1} onClick={() => this.onSelectCategory(cat.path)} >{cat.name}</NavItem>
                         ))}
                         
                     </Nav>
@@ -36,4 +41,14 @@ class MainMenu extends Component {
     }
 }
 
-export default connect(null, null)(MainMenu);
+const mapStateToProps = (state, props) => ({
+    allPosts: state.posts.all || [],
+    selectedCategory: state.navigation.selectedCategory
+})
+
+const mapDispatchToProps = dispatch => ({
+    //getPosts: (posts) => dispatch(fetchAllPostsActionCreator(posts)),
+    selectCategory: (selectedCategory) => dispatch(selectCategoryActionCreator(selectedCategory))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainMenu);

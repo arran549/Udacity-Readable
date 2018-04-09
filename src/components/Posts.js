@@ -4,6 +4,7 @@ import Post from './Post'
 import { getAllPosts } from './../readableAPI'
 import { PageHeader, Panel, Button, Row, Col } from 'react-bootstrap'
 import { fetchAllPostsActionCreator } from '../actions/posts.actions'
+import { selectedCategory } from '../actions/navigation.actions'
 
 
 class Posts extends React.Component {
@@ -35,10 +36,12 @@ class Posts extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    allPosts: state.posts.all || []
+    allPosts: state.posts.all || [],
+    selectedCategory: state.navigation.selectedCategory
 })
 
 const mapDispatchToProps = dispatch => ({
     getPosts: (posts) => dispatch(fetchAllPostsActionCreator(posts))
+    
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)
