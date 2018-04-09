@@ -1,34 +1,52 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import Posts from './components/Posts'
 import MainMenu from './components/MainMenu'
 import { getCategories } from './readableAPI'
 import { Route, Switch } from 'react-router-dom'
+import { fetchAllPostsActionCreator } from './actions/posts.actions'
+import { getAllPosts } from './readableAPI'
 
 class App extends Component {
 
-
-
-  render() {
-    const categories = []
     
-    getCategories().then(res => {
-      categories.push(res)
-    });
+    componentDidMount() {
+        getAllPosts().then((posts) => {
+            console.log('posts', posts);
+            this.props.getPosts(posts);
+        })
+    }
 
-    
+    render() {
+        const categories = []
+        
+        getCategories().then(res => {
+        categories.push(res)
+        });
 
-    return (
-      <div >
-        <MainMenu></MainMenu>
-        <Switch>
-          <Route exact path="/" component={Posts} />
-          <Route exact path="/posts"  component={Posts} />
-          <Route path="/:category" component={Posts} />
-        </Switch>
-      </div>
-    );
-  }
+        
+
+        return (
+        <div >
+            <MainMenu></MainMenu>
+            <Switch>
+                <Route exact path="/" component={Posts} />
+                <Route exact path="/posts"  component={Posts} />
+                <Route path="/:category" component={Posts} />
+            </Switch>
+        </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state, props) => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+    getPosts: (posts) => dispatch(fetchAllPostsActionCreator(posts))
+    
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

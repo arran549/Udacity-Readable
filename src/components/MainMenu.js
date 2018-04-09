@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { getCategories } from './../readableAPI'
 import { selectCategoryActionCreator } from '../actions/navigation.actions'
+import { LinkContainer } from 'react-router-bootstrap';
 
 class MainMenu extends Component {
     state = { 
@@ -20,6 +21,7 @@ class MainMenu extends Component {
     }
 
     render() {
+
         return (
             <div>
                 <Navbar>
@@ -28,13 +30,16 @@ class MainMenu extends Component {
                             <a href="/">Readable</a>
                         </Navbar.Brand>
                     </Navbar.Header>
-                    <Nav>
+                    <Nav activeKey={this.props.selectedCategory} onSelect={(k) => this.onSelectCategory(k)}>
                         {this.state.categories.map((cat) => (
-                            <NavItem key={cat.path} eventKey={1} href={"/" + cat.path} >{cat.name}</NavItem>
+                            <LinkContainer key={cat.path}  to={"/" + cat.path}>
+                                <NavItem eventKey={cat.name} >{cat.name}</NavItem>
+                            </LinkContainer>
                         ))}
                     </Nav>
                 </Navbar>
             </div>
+            
         );
     }
 }
