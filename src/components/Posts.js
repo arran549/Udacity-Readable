@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import VoteOnPost from './VoteOnPost'
+import PostComments from './PostComments'
 import { getAllPosts } from './../readableAPI'
 import { PageHeader, Panel, Button, Badge, Row, Col } from 'react-bootstrap'
 import { fetchAllPostsActionCreator } from '../actions/posts.actions'
@@ -32,8 +33,7 @@ class Posts extends React.Component {
                             <Row>
                                 <Col md={8}>{post.body}</Col>
                                 <Col md={2}>
-                                    <Badge>Comments: {post.commentCount}</Badge>
-                                    
+                                    <PostComments post={post}></PostComments>
                                 </Col>
                                 <Col>
                                     <VoteOnPost post={post}></VoteOnPost>
