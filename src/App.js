@@ -4,7 +4,7 @@ import './App.css';
 import Posts from './components/Posts'
 import MainMenu from './components/MainMenu'
 import { getCategories } from './readableAPI'
-import { Route } from 'react-router-dom'
+import { Route, Switch, DefaultRoute } from 'react-router-dom'
 
 class App extends Component {
 
@@ -14,27 +14,19 @@ class App extends Component {
     const categories = []
     
     getCategories().then(res => {
-      console.log(res);
       categories.push(res)
-      console.log(categories)
     });
 
     
 
     return (
       <div >
-        <Route exact path="/" render={() => (
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
-            </header>
-            <p className="App-intro">
-              To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
-          </div>
-        )} />
-        <Route path="/posts" render={() => (<div><MainMenu></MainMenu><Posts></Posts></div>) } />
+        <MainMenu></MainMenu>
+        <Switch>
+          <Route exact path="/" component={Posts} />
+          <Route exact path="/posts"  component={Posts} />
+          <Route path="/:category" component={Posts} />
+        </Switch>
       </div>
     );
   }
