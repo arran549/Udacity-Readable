@@ -7,7 +7,7 @@ import { combineReducers } from 'redux'
 
 import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST } from '../actions/posts.actions'
 
-import { SELECT_CATEGORY } from '../actions/navigation.actions'
+import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
 
 const initialPostsState = {
     all: []
@@ -41,7 +41,8 @@ function posts (state = initialPostsState, action) {
 }
 
 const initialNavigationState = {
-    selectedCategory: 'all'
+    selectedCategory: 'all',
+    categories: []
 }
 
 function navigation (state = initialNavigationState, action) {
@@ -50,6 +51,12 @@ function navigation (state = initialNavigationState, action) {
             return {
                 ...state,
                 selectedCategory: action.category
+            }
+        }
+        case UPDATE_CATEGORIES: {
+            return {
+                ...state,
+                categories: action.categories
             }
         }
         default:

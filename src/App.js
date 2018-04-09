@@ -6,6 +6,7 @@ import MainMenu from './components/MainMenu'
 import { getCategories } from './readableAPI'
 import { Route, Switch } from 'react-router-dom'
 import { fetchAllPostsActionCreator } from './actions/posts.actions'
+import { updateCategoriesActionCreator } from './actions/navigation.actions'
 import { getAllPosts } from './readableAPI'
 
 class App extends Component {
@@ -15,7 +16,12 @@ class App extends Component {
         getAllPosts().then((posts) => {
             console.log('posts', posts);
             this.props.getPosts(posts);
+        });
+
+        getCategories().then((categories) => {
+            this.props.updateCategories(categories);
         })
+
     }
 
     render() {
@@ -45,7 +51,8 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getPosts: (posts) => dispatch(fetchAllPostsActionCreator(posts))
+    getPosts: (posts) => dispatch(fetchAllPostsActionCreator(posts)),
+    updateCategories: (categories) => dispatch(updateCategoriesActionCreator(categories))
     
 })
 

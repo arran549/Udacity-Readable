@@ -1,4 +1,5 @@
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
+export const UPDATE_CATEGORIES = 'UPDATE_CATEGORIES'
 
 
 export const selectCategoryActionCreator = (category) => {
@@ -7,5 +8,12 @@ export const selectCategoryActionCreator = (category) => {
     return {
         type: SELECT_CATEGORY,
         category
+    }
+}
+
+export const updateCategoriesActionCreator = (categories) => {
+    return {
+        type: UPDATE_CATEGORIES,
+        categories
     }
 }

@@ -10,11 +10,7 @@ class MainMenu extends Component {
         categories: []
      }
 
-    componentDidMount() {
-        getCategories().then((res) => {
-            this.setState({categories: res})
-        })
-    }
+
 
     onSelectCategory(selectedCategory) {
         this.props.selectCategory(selectedCategory);
@@ -30,8 +26,8 @@ class MainMenu extends Component {
                             <a href="/">Readable</a>
                         </Navbar.Brand>
                     </Navbar.Header>
-                    <Nav >
-                        {this.state.categories.map((cat) => (
+                    <Nav>
+                        {this.props.categories.map((cat) => (
                             <LinkContainer key={cat.path}  to={"/" + cat.path} active={this.props.selectedCategory === cat.path} onClick={() => this.onSelectCategory(cat.path)}>
                                 <NavItem>{cat.name}</NavItem>
                             </LinkContainer>
@@ -46,7 +42,8 @@ class MainMenu extends Component {
 
 const mapStateToProps = (state, props) => ({
     allPosts: state.posts.all || [],
-    selectedCategory: state.navigation.selectedCategory
+    selectedCategory: state.navigation.selectedCategory,
+    categories: state.navigation.categories
 })
 
 const mapDispatchToProps = dispatch => ({
