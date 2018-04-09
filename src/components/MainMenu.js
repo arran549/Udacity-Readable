@@ -31,9 +31,8 @@ class MainMenu extends Component {
                     </Navbar.Header>
                     <Nav>
                         {this.state.categories.map((cat) => (
-                            <NavItem eventKey={1} onClick={() => this.onSelectCategory(cat.path)} >{cat.name}</NavItem>
+                            <NavItem key={cat.path} eventKey={1} href={"/" + cat.path} >{cat.name}</NavItem>
                         ))}
-                        
                     </Nav>
                 </Navbar>
             </div>
@@ -47,7 +46,6 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    //getPosts: (posts) => dispatch(fetchAllPostsActionCreator(posts)),
     selectCategory: (selectedCategory) => dispatch(selectCategoryActionCreator(selectedCategory))
 })
 
