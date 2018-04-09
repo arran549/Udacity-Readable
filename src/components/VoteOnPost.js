@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { voteOnPostActionCreator } from '../actions/posts.actions'
 import { votePost } from '../readableAPI'
-import { PageHeader, Button, Badge, } from 'react-bootstrap'
+import { PageHeader, Button } from 'react-bootstrap'
 
 class VoteOnPost extends React.Component {
 
@@ -23,7 +23,6 @@ class VoteOnPost extends React.Component {
 
         return (
             <div>
-                <Badge>{post.voteScore}</Badge>
                 <Button bsStyle="primary" onClick={() => this.vote(post.id, 'upVote')}>Vote Up</Button>
                 <Button bsStyle="default"  onClick={() => this.vote(post.id, 'downVote')}>Vote Down</Button>
             </div>
