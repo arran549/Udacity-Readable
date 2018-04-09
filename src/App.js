@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Posts from './components/posts/Posts'
+import Posts from './components/Posts'
 import { getCategories } from './readableAPI'
 import { Route } from 'react-router-dom'
 

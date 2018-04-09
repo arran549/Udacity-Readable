@@ -1,14 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-//import * as ReadableAPI from './../../readableAPI'
-import { getAllPosts } from './../../readableAPI'
+import { getAllPosts } from './../readableAPI'
 import { PageHeader, Panel, Button, Badge, Row, Col } from 'react-bootstrap'
-import { fetchAllPostsActionCreator } from '../../actions/posts.actions'
+import { fetchAllPostsActionCreator } from '../actions/posts.actions'
 
 
 class Posts extends React.Component {
-
-
 
     componentDidMount() {
 
@@ -16,9 +13,6 @@ class Posts extends React.Component {
             console.log('posts', posts)
             this.props.getPosts(posts)
         })
-
-
-
     }
 
     render() {
