@@ -5,12 +5,13 @@ import { combineReducers } from 'redux'
 //    REMOVE_FROM_CALENDAR
 //} from '../actions'
 
-import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST } from '../actions/posts.actions'
+import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST } from '../actions/posts.actions'
 
 import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
 
 const initialPostsState = {
-    all: []
+    all: [],
+    selectedPostId: null
 }
 
 function posts (state = initialPostsState, action) {
@@ -33,6 +34,12 @@ function posts (state = initialPostsState, action) {
             return {
                 ...state,
                 all: state.all.filter((post) => post.id !== action.id)
+            }
+        }
+        case SELECT_POST: {
+            return {
+                ...state,
+                selectedPostId: action.id
             }
         }
         default:
