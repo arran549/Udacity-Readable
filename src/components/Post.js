@@ -4,6 +4,7 @@ import VoteOnPost from './VoteOnPost'
 import PostComments from './PostComments'
 import Timestamp from  './Timestamp'
 import DeletePostButton from './DeletePostButton'
+import ViewPostButton from './ViewPostButton'
 
 
 class Post extends Component {
@@ -29,6 +30,8 @@ class Post extends Component {
                         </Col>
                         <Col md={1}>
                             <DeletePostButton post={post}></DeletePostButton>
+                            <ViewPostButton post={post}></ViewPostButton>
+                            
                         </Col>
                     </Row>
                     </Panel.Body>
