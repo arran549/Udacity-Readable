@@ -22,7 +22,7 @@ class Posts extends React.Component {
         return (
             <div>
                 <PageHeader>Posts</PageHeader>
-                {  this.props.allPosts.map( (post) => ( 
+                {  this.props.posts.map( (post) => ( 
                     <div key={post.id}>
                         <Post post={post}></Post>
                     </div>
@@ -33,9 +33,11 @@ class Posts extends React.Component {
     }
 }
 
-const mapStateToProps = (state, props) => ({
-    allPosts: state.posts.all || [],
-})
+const mapStateToProps = (state, props) => {
+    return {
+        posts: state.navigation.selectedCategory === 'all' ? state.posts.all : state.posts.all.filter((post) => post.category === state.navigation.selectedCategory)
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
     selectCategory: (selectedCategory) => dispatch(selectCategoryActionCreator(selectedCategory))    
