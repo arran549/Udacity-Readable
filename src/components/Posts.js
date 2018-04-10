@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
-import { PageHeader } from 'react-bootstrap'
+import { Panel, PageHeader, Well } from 'react-bootstrap'
 import { selectCategoryActionCreator } from '../actions/navigation.actions'
 
 
@@ -19,15 +19,25 @@ class Posts extends React.Component {
 
     render() {
 
+        const { posts } = this.props
+
         return (
             <div>
                 <PageHeader>Posts</PageHeader>
-                {  this.props.posts.map( (post) => ( 
-                    <div key={post.id}>
-                        <Post post={post}></Post>
-                    </div>
+                <Panel>
+                    <Panel.Heading>
+                        <Panel.Title ComponentClass="h1">{this.props.selectedCategory}</Panel.Title>
+                    </Panel.Heading>
+                    <Panel.Body>
+                    { posts.length > 0 || (<Well>There are no posts to display</Well>) }
+                    {  posts && posts.map( (post) => ( 
+                        <div key={post.id}>
+                            <Post post={post}></Post>
+                        </div>
 
-                ))}
+                    ))}
+                    </Panel.Body>
+                </Panel>
             </div>
         )
     }
@@ -35,7 +45,8 @@ class Posts extends React.Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        posts: state.navigation.selectedCategory === 'all' ? state.posts.all : state.posts.all.filter((post) => post.category === state.navigation.selectedCategory)
+        posts: state.navigation.selectedCategory === 'all' ? state.posts.all : state.posts.all.filter((post) => post.category === state.navigation.selectedCategory),
+        selectedCategory: state.navigation.selectedCategory
     }
 }
 
