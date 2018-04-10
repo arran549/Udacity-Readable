@@ -26,7 +26,7 @@ class Posts extends React.Component {
                 <PageHeader>Posts</PageHeader>
                 <Panel>
                     <Panel.Heading>
-                        <Panel.Title ComponentClass="h1">{this.props.selectedCategory}</Panel.Title>
+                        <Panel.Title componentClass="h1">{this.props.selectedCategory}</Panel.Title>
                     </Panel.Heading>
                     <Panel.Body>
                     { posts.length > 0 || (<Well>There are no posts to display</Well>) }
