@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
-import { getCategories } from './../readableAPI'
 import { selectCategoryActionCreator } from '../actions/navigation.actions'
 import { LinkContainer } from 'react-router-bootstrap';
 
