@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
-import { Panel, PageHeader, Well } from 'react-bootstrap'
+import { Link, withRouter } from 'react-router-dom'
+import { Panel, PageHeader, Well, Button } from 'react-bootstrap'
 import { selectCategoryActionCreator } from '../actions/navigation.actions'
 
 
@@ -36,6 +37,10 @@ class Posts extends React.Component {
                         </div>
 
                     ))}
+                    <Link to="/udacity">
+                        <Button>Udacity Posts</Button>
+                    </Link>
+
                     </Panel.Body>
                 </Panel>
             </div>
@@ -53,4 +58,4 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => ({
     selectCategory: (selectedCategory) => dispatch(selectCategoryActionCreator(selectedCategory))    
 })
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts))

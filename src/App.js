@@ -4,7 +4,7 @@ import './App.css';
 import Posts from './components/Posts'
 import MainMenu from './components/MainMenu'
 import { getCategories } from './readableAPI'
-import { Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, withRouter } from 'react-router-dom'
 import { fetchAllPostsActionCreator } from './actions/posts.actions'
 import { updateCategoriesActionCreator } from './actions/navigation.actions'
 import { getAllPosts } from './readableAPI'
@@ -23,12 +23,12 @@ class App extends Component {
         return (
             <div>
                 <MainMenu></MainMenu>
-                <Switch>
-                    <Route path="/posts/:id" component={PostDetail} />
-                    <Route exact path="/" component={Posts} />
-                    <Route exact path="/posts"  component={Posts} />
-                    <Route path="/:category" component={Posts} />
-                </Switch>
+                    <Switch>
+                        <Route path="/posts/:id" component={PostDetail} />
+                        <Route exact path="/" component={Posts} />
+                        <Route exact path="/posts"  component={Posts} />
+                        <Route path="/:category" component={Posts} />
+                    </Switch>
             </div>
         );
     }
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
     updateCategories: () => getCategories().then((categories) => dispatch(updateCategoriesActionCreator(categories)))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
