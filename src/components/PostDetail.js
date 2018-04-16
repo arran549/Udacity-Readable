@@ -62,9 +62,7 @@ class PostDetail extends Component {
 
 const mapStateToProps = (state, props) => {
 
-    const selectedPostId = props.match.params.id
-
-    console.log("comments:", state.comments.posts);
+    const selectedPostId = props.match.params.id;
 
     return {
         post: state.posts.all.length && state.posts.all.filter((post) => post.id === selectedPostId, [])[0],
