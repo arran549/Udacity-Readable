@@ -6,6 +6,7 @@ import VoteOnPost from './VoteOnPost'
 import PostComments from './PostComments'
 import Comment from './Comment'
 import Timestamp from  './Timestamp'
+import Score from './Score'
 import DeletePostButton from './DeletePostButton'
 import ViewPostButton from './ViewPostButton'
 import { getCommentsForPostActionCreator } from './../actions/posts.actions'
@@ -29,7 +30,7 @@ class PostDetail extends Component {
         return (
             <div>
            
-                    <Panel.Heading><h1>{post.title} <Badge>Score: {post.voteScore}</Badge></h1>
+                    <Panel.Heading><h1>{post.title} <Score score={post.voteScore} /></h1>
                         <VoteOnPost post={post}></VoteOnPost>
                     </Panel.Heading>
                     <Panel.Body>
@@ -37,7 +38,7 @@ class PostDetail extends Component {
                     <Row>
                         <Col md={9}>
                             <p>{post.body}</p>
-                            <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp}></Timestamp></i></small></p>
+                            <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp} /></i></small></p>
                             <p><PostComments post={post}></PostComments></p>
                         </Col>
 
