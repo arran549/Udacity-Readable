@@ -4,6 +4,7 @@ import Post from './Post';
 import { Panel, Badge, Row, Col } from 'react-bootstrap'
 import VoteOnPost from './VoteOnPost'
 import PostComments from './PostComments'
+import Comment from './Comment'
 import Timestamp from  './Timestamp'
 import DeletePostButton from './DeletePostButton'
 import ViewPostButton from './ViewPostButton'
@@ -46,7 +47,7 @@ class PostDetail extends Component {
                     </Row>
                     <Row>
                         {this.props.comments && this.props.comments.map((comment) => (
-                            <h3>{comment.body}</h3>
+                            <Comment key={comment.id} comment={comment}></Comment>
                         ))}
                     </Row>
                     </Panel.Body>
