@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { selectCategoryActionCreator } from '../actions/navigation.actions'
 import { LinkContainer } from 'react-router-bootstrap';
+import { withRouter} from 'react-router-dom'
 
 class MainMenu extends Component {
     state = { 
@@ -49,4 +50,4 @@ const mapDispatchToProps = dispatch => ({
     selectCategory: (selectedCategory) => dispatch(selectCategoryActionCreator(selectedCategory))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainMenu);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainMenu));

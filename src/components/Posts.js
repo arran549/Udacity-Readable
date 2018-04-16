@@ -18,6 +18,10 @@ class Posts extends React.Component {
         }
     }
 
+    onSelectPosts () {
+            this.props.selectCategory('all');
+    }
+
     render() {
 
         const { posts } = this.props
@@ -37,7 +41,7 @@ class Posts extends React.Component {
                         </div>
 
                     ))}
-                    <Link to="/udacity">
+                    <Link to="/posts" onClick={() => this.onSelectPosts()}>
                         <Button>Udacity Posts</Button>
                     </Link>
 
