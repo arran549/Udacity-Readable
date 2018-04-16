@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import { Button, FormControl, FormGroup, ControlLabel } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { addCommentToPost } from './../readableAPI'
+import { addCommentToPostActionCreator } from './../actions/comments.actions'
 import { v1 as uuid } from 'uuid'
 
 const customStyles = {
@@ -17,6 +18,7 @@ const customStyles = {
   }
 };
 
+ReactModal.setAppElement('#root')
 
 class AddComment extends React.Component {
   constructor() {
@@ -24,6 +26,7 @@ class AddComment extends React.Component {
 
     this.state = {
         input: '',
+        author: '',
         modalIsOpen: false
     };
 
@@ -67,6 +70,7 @@ class AddComment extends React.Component {
 
     addCommentToPost(model).then(() => {
         console.log('added comment');
+        this.props.addComment(model)
     })
 
     this.setState({modalIsOpen: false});
@@ -76,7 +80,7 @@ class AddComment extends React.Component {
     return (
       <div>
         <Button onClick={this.openModal}>Add Comment</Button>
-        <Modal
+        <ReactModal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
@@ -100,7 +104,7 @@ class AddComment extends React.Component {
                 
                 <Button onClick={this.addComment}>Add</Button>
           </form>
-        </Modal>
+        </ReactModal>
       </div>
     );
   }
@@ -111,7 +115,7 @@ const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    addComment: (comment) => dispatch(addCommentToPostActionCreator(comment))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddComment)
