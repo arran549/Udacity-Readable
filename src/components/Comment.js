@@ -13,12 +13,9 @@ class Comment extends Component {
         return (
             <div>
                 <Panel>
-                <Panel.Heading>
-                    <Panel.Title>{comment.author}</Panel.Title>
-                </Panel.Heading>
                 <Panel.Body>
                     <p>{comment.body}</p>
-                    <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small>
+                    <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small></p>
                 </Panel.Body>
                 </Panel>
             </div>
