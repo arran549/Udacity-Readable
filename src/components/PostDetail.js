@@ -5,6 +5,7 @@ import { Panel, Badge, Row, Col } from 'react-bootstrap'
 import VoteOnPost from './VoteOnPost'
 import PostComments from './PostComments'
 import Comment from './Comment'
+import AddComment from './AddComment'
 import Timestamp from  './Timestamp'
 import Score from './Score'
 import DeletePostButton from './DeletePostButton'
@@ -52,6 +53,7 @@ class PostDetail extends Component {
                         ))}
                     </Row>
                     </Panel.Body>
+                    <AddComment post={post}></AddComment>
             </div>
         );
     }
