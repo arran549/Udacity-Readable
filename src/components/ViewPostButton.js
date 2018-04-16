@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { selectPostActionCreator } from './../actions/posts.actions'
 import { Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { MdView } from 'react-icons/lib/md'
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -20,11 +20,11 @@ class ViewPostButton extends Component {
 
         console.log(this.props.id)
         return (
-            // <LinkContainer to={"/posts/" + this.props.post.id}>
+            
             <Link to={"/posts/"+ this.props.post.id}>
                 <Button onClick={() => this.onViewPost(this.props.post.id)}>View</Button>
             </Link>
-            // </LinkContainer>
+            
         );
     }
 }
@@ -38,4 +38,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewPostButton);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ViewPostButton));
