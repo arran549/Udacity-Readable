@@ -17,7 +17,7 @@ class Comment extends Component {
                     <Panel.Title>{comment.author}</Panel.Title>
                 </Panel.Heading>
                 <Panel.Body>
-                    {comment.body}
+                    <p>{comment.body}</p>
                     <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small>
                 </Panel.Body>
                 </Panel>
