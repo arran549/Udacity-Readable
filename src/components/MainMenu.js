@@ -27,6 +27,9 @@ class MainMenu extends Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
+                        <LinkContainer to={"/posts"} active={this.props.selectedCategory === 'all'} onClick={() => this.onSelectCategory('all')}>
+                                <NavItem>all</NavItem>
+                        </LinkContainer>
                         {this.props.categories.map((cat) => (
                             <LinkContainer key={cat.path}  to={"/" + cat.path} active={this.props.selectedCategory === cat.path} onClick={() => this.onSelectCategory(cat.path)}>
                                 <NavItem>{cat.name}</NavItem>
