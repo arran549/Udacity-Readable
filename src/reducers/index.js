@@ -10,6 +10,8 @@ import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST } from '../acti
 
 import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
 
+import { UPDATE_COMMENTS_FOR_POST } from '../actions/comments.actions'
+
 const initialPostsState = {
     all: [],
     selectedPostId: null
@@ -72,7 +74,34 @@ function navigation (state = initialNavigationState, action) {
     }
 }
 
+const intialCommentsState = {
+    posts: {}
+}
+
+function comments (state = intialCommentsState, action) {
+    switch(action.type) {
+        case UPDATE_COMMENTS_FOR_POST: {
+
+            console.log("Before: ", state)
+
+            const updated = {
+                ...state,
+                posts: { 
+                    ...state.comments,
+                    [action.postId]: action.comments
+                }
+            }
+
+            console.log("After:", updated);
+            return updated;
+        }
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({ 
     posts,
-    navigation
+    navigation,
+    comments
 });

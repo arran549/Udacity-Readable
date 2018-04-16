@@ -7,9 +7,17 @@ import PostComments from './PostComments'
 import Timestamp from  './Timestamp'
 import DeletePostButton from './DeletePostButton'
 import ViewPostButton from './ViewPostButton'
+import { getCommentsForPostActionCreator } from './../actions/posts.actions'
+import { updateCommentsForPostActionCreator } from './../actions/comments.actions'
+import { getAllCommentsForPost } from '../readableAPI';
 
 
 class PostDetail extends Component {
+
+    componentDidMount () {
+       this.props.updateComments(this.props.match.params.id);//this.props.selectedPostId);
+
+    }
 
     render() {
 
@@ -36,6 +44,11 @@ class PostDetail extends Component {
                             <DeletePostButton post={post}></DeletePostButton>                           
                         </Col>
                     </Row>
+                    <Row>
+                        {this.props.comments && this.props.comments.map((comment) => (
+                            <h3>{comment.body}</h3>
+                        ))}
+                    </Row>
                     </Panel.Body>
             </div>
         );
@@ -47,9 +60,18 @@ const mapStateToProps = (state, props) => {
 
     const selectedPostId = props.match.params.id
 
+    console.log("comments:", state.comments.posts);
+
     return {
-        post: state.posts.all.length && state.posts.all.filter((post) => post.id === selectedPostId, [])[0]
+        post: state.posts.all.length && state.posts.all.filter((post) => post.id === selectedPostId, [])[0],
+        selectedPostId,
+        comments: state.comments.posts[selectedPostId]
     }
 }
 
-export default connect(mapStateToProps)(PostDetail)
+const mapDispatchToProps = dispatch => ({
+    updateComments: (postId) => getAllCommentsForPost(postId).then((comments) => dispatch(updateCommentsForPostActionCreator(postId, comments)))
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)
