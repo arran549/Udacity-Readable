@@ -95,6 +95,23 @@ function comments (state = intialCommentsState, action) {
             console.log("After:", updated);
             return updated;
         }
+        case ADD_COMMENT_TO_POST: {
+            console.log('state: ', state, 'model: ', action)
+
+            const post = state.posts[action.model.parentId]
+
+            if(post){
+                console.log('adding');
+                post.push(action.model) 
+                state.posts[action.model.parentId] = post;
+            }
+
+            return {
+                ...state,
+                posts: JSON.parse(JSON.stringify(state.posts))
+            }
+        }
+        }
         default:
             return state;
     }
