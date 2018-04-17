@@ -101,7 +101,7 @@ export const updateComment = (id, commentBody) => {
 }
 
 export const deleteComment = (id) => {
-    fetch(`${api}/comments/${id}`, {
+    return fetch(`${api}/comments/${id}`, {
         method: 'DELETE',
         headers
     })
