@@ -2,6 +2,7 @@
 export const UPDATE_COMMENTS_FOR_POST = 'UPDATE_COMMENTS_FOR_POST'
 export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT'
 export const ADD_COMMENT_TO_POST = 'ADD_COMMENT_TO_POST'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export const updateCommentsForPostActionCreator = (postId, comments) => {
     console.log("creator: ", postId, comments);
@@ -30,5 +31,13 @@ export const addCommentToPostActionCreator = (model) => {
     return {
         type: ADD_COMMENT_TO_POST,
         model
+    }
+}
+
+export const deleteCommentActionCreator = (postId, commentId) => {
+    return {
+        type: DELETE_COMMENT,
+        commentId,
+        postId
     }
 }
