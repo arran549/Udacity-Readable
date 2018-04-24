@@ -10,7 +10,7 @@ import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST } from '../acti
 
 import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
 
-import { UPDATE_COMMENTS_FOR_POST } from '../actions/comments.actions'
+import { UPDATE_COMMENTS_FOR_POST, ADD_COMMENT_TO_POST } from '../actions/comments.actions'
 
 const initialPostsState = {
     all: [],
@@ -111,7 +111,7 @@ function comments (state = intialCommentsState, action) {
                 posts: JSON.parse(JSON.stringify(state.posts))
             }
         }
-        }
+        
         default:
             return state;
     }
