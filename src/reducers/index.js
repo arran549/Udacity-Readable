@@ -45,6 +45,12 @@ function posts (state = initialPostsState, action) {
                 selectedPostId: action.id
             }
         }
+        case ADD_COMMENT_TO_POST: {
+            return {
+                ...state,
+                all: state.all.map((post, i) => post.id == action.model.parentId ? { ...post, commentCount: post.commentCount += 1 } : post )
+            }
+        }
         default:
             return state;
     }
