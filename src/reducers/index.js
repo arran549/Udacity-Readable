@@ -97,7 +97,6 @@ function navigation (state = initialNavigationState, action) {
 }
 
 const intialCommentsState = {
-    posts: {},
     byId: {},
     allIds: {}
 }
@@ -105,12 +104,6 @@ const intialCommentsState = {
 function comments (state = intialCommentsState, action) {
     switch(action.type) {
         case UPDATE_COMMENTS_FOR_POST: {
-
-            console.log("Before: ", state)
-
-            
-
-            console.log(" asd ", new Set([...state.allIds, action.comments.map((comment) => (comment.id))]));
 
             const updated = {
                 ...state,
@@ -124,11 +117,9 @@ function comments (state = intialCommentsState, action) {
                 allIds: [...state.allIds, ...action.comments.map((comment) => (comment.id))]
             }
 
-            console.log("After:", updated);
             return updated;
         }
         case ADD_COMMENT_TO_POST: {
-            console.log('state: ', state, 'model: ', action)
 
             const post = state.posts[action.model.parentId]
 
@@ -140,7 +131,6 @@ function comments (state = intialCommentsState, action) {
 
             return {
                 ...state,
-                posts: JSON.parse(JSON.stringify(state.posts)),
                 allIds: [...state.allIds, action.model.id],
                 byId: { ...state.byId, [action.model.id]: action.model }
             }
