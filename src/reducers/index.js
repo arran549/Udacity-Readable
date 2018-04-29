@@ -128,7 +128,18 @@ function comments (state = intialCommentsState, action) {
             }
         }
         case DELETE_COMMENT: {
-            
+
+            console.log('delete comment', action);
+
+            delete state.byId[action.commentId];
+
+            return {
+                ...state,
+                allIds: state.allIds.filter((id) => id !== action.commentId),
+                byId: {
+                    ...state.byId
+                }
+            }
         }
         
         default:
