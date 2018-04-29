@@ -121,14 +121,6 @@ function comments (state = intialCommentsState, action) {
         }
         case ADD_COMMENT_TO_POST: {
 
-            const post = state.posts[action.model.parentId]
-
-            if(post){
-                console.log('adding');
-                post.push(action.model) 
-                state.posts[action.model.parentId] = post;
-            }
-
             return {
                 ...state,
                 allIds: [...state.allIds, action.model.id],
