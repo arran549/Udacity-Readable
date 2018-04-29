@@ -29,29 +29,29 @@ class PostDetail extends Component {
 
         return (
             <div>
-                    <Panel.Heading><h1>{post.title} <Score score={post.voteScore} /></h1>
-                        <VoteOnPost post={post}></VoteOnPost>
-                    </Panel.Heading>
-                    <Panel.Body>
-                    <br />
-                    <Row>
-                        <Col md={9}>
-                            <p>{post.body}</p>
-                            <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp} /></i></small></p>
-                            <p><PostComments post={post}></PostComments></p>
-                        </Col>
+                <Panel.Heading><h1>{post.title} <Score score={post.voteScore} /></h1>
+                    <VoteOnPost post={post}></VoteOnPost>
+                </Panel.Heading>
+                <Panel.Body>
+                <br />
+                <Row>
+                    <Col md={9}>
+                        <p>{post.body}</p>
+                        <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp} /></i></small></p>
+                        <p><PostComments post={post}></PostComments></p>
+                    </Col>
 
-                        <Col md={1}>
-                            <DeletePostButton post={post}></DeletePostButton>                           
-                        </Col>
-                    </Row>
-                    <Row>
-                        {this.props.comments && this.props.comments.map((comment) => (
-                            <Comment key={comment.id} comment={comment}></Comment>
-                        ))}
-                    </Row>
-                    </Panel.Body>
-                    <AddComment post={post}></AddComment>
+                    <Col md={1}>
+                        <DeletePostButton post={post}></DeletePostButton>                           
+                    </Col>
+                </Row>
+                <Row>
+                    {this.props.comments && this.props.comments.map((comment) => (
+                        <Comment key={comment.id} comment={comment}></Comment>
+                    ))}
+                </Row>
+                </Panel.Body>
+                <AddComment post={post}></AddComment>
             </div>
         );
     }
