@@ -48,7 +48,23 @@ function posts (state = initialPostsState, action) {
         case ADD_COMMENT_TO_POST: {
             return {
                 ...state,
-                all: state.all.map((post, i) => post.id == action.model.parentId ? { ...post, commentCount: post.commentCount += 1 } : post )
+                all: state.all.map((post, i) => post.id == action.model.parentId ? 
+                    { 
+                        ...post, 
+                        commentCount: post.commentCount += 1,
+                        comments: [...post.comments, action.model.id] 
+                    } 
+                    : post )
+            }
+        }
+        case UPDATE_COMMENTS_FOR_POST: {
+            console.log("Update comments for post : add comment ids", action.postId, state.all);
+            return {
+                ...state,
+                all: state.all.map((post, i) => post.id == action.postId ? {
+                    ...post,
+                    comments: [...post.comments || [], ...action.comments.map((comment) => (comment.id))]
+                } : post )
             }
         }
         default:
@@ -81,7 +97,9 @@ function navigation (state = initialNavigationState, action) {
 }
 
 const intialCommentsState = {
-    posts: {}
+    posts: {},
+    byId: {},
+    allIds: {}
 }
 
 function comments (state = intialCommentsState, action) {
@@ -90,12 +108,20 @@ function comments (state = intialCommentsState, action) {
 
             console.log("Before: ", state)
 
+            
+
+            console.log(" asd ", new Set([...state.allIds, action.comments.map((comment) => (comment.id))]));
+
             const updated = {
                 ...state,
-                posts: { 
-                    ...state.comments,
-                    [action.postId]: action.comments
-                }
+                byId: {
+                    ...state.byId,
+                    ...action.comments.reduce((obj, item) => {
+                        obj[item.id] = item
+                        return obj
+                    }, {})
+                },
+                allIds: [...state.allIds, ...action.comments.map((comment) => (comment.id))]
             }
 
             console.log("After:", updated);
@@ -114,8 +140,13 @@ function comments (state = intialCommentsState, action) {
 
             return {
                 ...state,
-                posts: JSON.parse(JSON.stringify(state.posts))
+                posts: JSON.parse(JSON.stringify(state.posts)),
+                allIds: [...state.allIds, action.model.id],
+                byId: { ...state.byId, [action.model.id]: action.model }
             }
+        }
+        case DELETE_COMMENT: {
+            
         }
         
         default:

@@ -18,8 +18,7 @@ import { getAllCommentsForPost } from '../readableAPI';
 class PostDetail extends Component {
 
     componentDidMount () {
-       this.props.updateComments(this.props.match.params.id);//this.props.selectedPostId);
-
+       this.props.updateComments(this.props.match.params.id);
     }
 
     render() {
@@ -30,7 +29,6 @@ class PostDetail extends Component {
 
         return (
             <div>
-           
                     <Panel.Heading><h1>{post.title} <Score score={post.voteScore} /></h1>
                         <VoteOnPost post={post}></VoteOnPost>
                     </Panel.Heading>
@@ -64,16 +62,23 @@ const mapStateToProps = (state, props) => {
 
     const selectedPostId = props.match.params.id;
 
+    const post  = state.posts.all.length && state.posts.all.filter((post) => post.id === selectedPostId, [])[0]
+
+    let comments = []
+
+    if(post.comments) {
+        comments = post.comments.map((comment) => state.comments.byId[comment]);
+    }
+
     return {
         post: state.posts.all.length && state.posts.all.filter((post) => post.id === selectedPostId, [])[0],
         selectedPostId,
-        comments: state.comments.posts[selectedPostId]
+        comments: [...comments]
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     updateComments: (postId) => getAllCommentsForPost(postId).then((comments) => dispatch(updateCommentsForPostActionCreator(postId, comments)))
-
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)
