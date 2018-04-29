@@ -39,6 +39,13 @@ function posts (state = initialPostsState, action) {
                 all: state.all.filter((post) => post.id !== action.id)
             }
         }
+        case DELETE_COMMENT: {
+            console.log("deleting comment on post");
+            return {
+                ...state,
+                all: state.all.map((post, i) => post.id === action.postId ? {...post, comments: post.comments.filter(comment => comment !== action.commentId) } : post)
+            }
+        }
         case SELECT_POST: {
             return {
                 ...state,
