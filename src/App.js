@@ -9,6 +9,7 @@ import { fetchAllPostsActionCreator } from './actions/posts.actions'
 import { updateCategoriesActionCreator } from './actions/navigation.actions'
 import { getAllPosts } from './readableAPI'
 import PostDetail from './components/PostDetail';
+import CreatePost from './components/CreatePost';
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
             <div>
                 <MainMenu></MainMenu>
                     <Switch>
+                        <Route path="/posts/create" component={CreatePost} />
                         <Route path="/posts/:id" component={PostDetail} />
                         <Route exact path="/" component={Posts} />
                         <Route exact path="/posts"  component={Posts} />
