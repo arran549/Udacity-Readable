@@ -4,6 +4,7 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const VOTE_ON_POST = 'VOTE_ON_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const SELECT_POST = 'SELECT_POST'
+export const CREATE_POST = 'CREATE_POST'
 
 export const fetchAllPostsActionCreator = (posts) => {
     console.log('fetch all posts - action creator', posts)
@@ -42,3 +43,10 @@ export const selectPostActionCreator = (id) => {
         id
     }
 }
+
+export const createPostActionCreator = (post) => {
+    return {
+        type: CREATE_POST,
+        post
+    }
+} 
