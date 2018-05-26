@@ -27,7 +27,7 @@ export const addPost = (post) => {
     return fetch(`${api}/posts`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ post })
+        body: JSON.stringify( post )
     }).then(res => res.json())
 }
 

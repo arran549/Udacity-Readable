@@ -4,6 +4,7 @@ import Post from './Post'
 import { Link, withRouter } from 'react-router-dom'
 import { Panel, PageHeader, Well, Button } from 'react-bootstrap'
 import { selectCategoryActionCreator } from '../actions/navigation.actions'
+import CreatePostButton from './CreatePostButton'
 
 
 
@@ -47,6 +48,7 @@ class Posts extends React.Component {
 
                     </Panel.Body>
                 </Panel>
+                <CreatePostButton />
             </div>
         )
     }

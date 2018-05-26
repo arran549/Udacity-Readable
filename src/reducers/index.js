@@ -6,7 +6,7 @@ import { routerReducer } from 'react-router-redux'
 //    REMOVE_FROM_CALENDAR
 //} from '../actions'
 
-import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST } from '../actions/posts.actions'
+import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST, CREATE_POST } from '../actions/posts.actions'
 
 import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
 
@@ -72,6 +72,12 @@ function posts (state = initialPostsState, action) {
                     ...post,
                     comments: [...post.comments || [], ...action.comments.map((comment) => (comment.id))]
                 } : post )
+            }
+        }
+        case CREATE_POST: {
+            return {
+                ...state,
+                all: [...state.all, action.post]
             }
         }
         default:
