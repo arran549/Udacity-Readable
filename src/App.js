@@ -10,6 +10,7 @@ import { updateCategoriesActionCreator } from './actions/navigation.actions'
 import { getAllPosts } from './readableAPI'
 import PostDetail from './components/PostDetail';
 import CreatePost from './components/CreatePost';
+import EditPost from './components/EditPost';
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
                 <MainMenu></MainMenu>
                     <Switch>
                         <Route path="/posts/create" component={CreatePost} />
+                        <Route path="/posts/:id/edit" component={EditPost} />
                         <Route path="/posts/:id" component={PostDetail} />
                         <Route exact path="/" component={Posts} />
                         <Route exact path="/posts"  component={Posts} />

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from './Post';
-import { Panel, Badge, Row, Col } from 'react-bootstrap'
+import { Link, withRouter } from 'react-router-dom'
+import { Panel, Badge, Row, Col, Button } from 'react-bootstrap'
 import VoteOnPost from './VoteOnPost'
 import PostComments from './PostComments'
 import Comment from './Comment'
@@ -13,6 +14,7 @@ import ViewPostButton from './ViewPostButton'
 import { getCommentsForPostActionCreator } from './../actions/posts.actions'
 import { updateCommentsForPostActionCreator } from './../actions/comments.actions'
 import { getAllCommentsForPost } from '../readableAPI';
+
 
 
 class PostDetail extends Component {
@@ -42,7 +44,10 @@ class PostDetail extends Component {
                     </Col>
 
                     <Col md={1}>
-                        <DeletePostButton post={post}></DeletePostButton>                           
+                        <DeletePostButton post={post}></DeletePostButton>       
+                        <Link to={"/posts/"+ this.props.post.id + "/edit"}>
+                            <Button>Edit</Button>
+                        </Link>                    
                     </Col>
                 </Row>
                 <Row>
@@ -52,6 +57,7 @@ class PostDetail extends Component {
                 </Row>
                 </Panel.Body>
                 <AddComment post={post}></AddComment>
+
             </div>
         );
     }
@@ -81,4 +87,4 @@ const mapDispatchToProps = dispatch => ({
     updateComments: (postId) => getAllCommentsForPost(postId).then((comments) => dispatch(updateCommentsForPostActionCreator(postId, comments)))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetail))

@@ -6,7 +6,7 @@ import { routerReducer } from 'react-router-redux'
 //    REMOVE_FROM_CALENDAR
 //} from '../actions'
 
-import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST, CREATE_POST } from '../actions/posts.actions'
+import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST, CREATE_POST, EDIT_POST } from '../actions/posts.actions'
 
 import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
 
@@ -78,6 +78,16 @@ function posts (state = initialPostsState, action) {
             return {
                 ...state,
                 all: [...state.all, action.post]
+            }
+        }
+        case EDIT_POST: {
+            console.log("Edit Post reducer:", action);
+
+            const { id, author, title, body } = action.postFields;
+
+            return {
+                ...state,
+                all: state.all.map((post, i) => post.id === id ? { ...post, author: author, body: body, title: title } : { ...post})
             }
         }
         default:
