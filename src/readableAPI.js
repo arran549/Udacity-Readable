@@ -77,6 +77,28 @@ export const addCommentToPost = (commentToPost) => {
     .then(res => res.json())
 }
 
+export const editCommentToPost = (comment) => {
+    return fetch(`${api}/comments/${comment.id}`, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify(comment)
+    })
+    .then(res => res.json())
+}
+
+// app.put('/comments/:id', bodyParser.json(), (req, res) => {
+//     comments.edit(req.token, req.params.id, req.body)
+//       .then(
+//         (data) => res.send(data),
+//           (error) => {
+//               console.error(error)
+//               res.status(500).send({
+//                   error: 'There was an error.'
+//               })
+//           }
+//       )
+// })
+
 export const getCommentDetails = (id) => {
     return fetch(`${api}/comments/${id}`)
     .then(res => res.json())

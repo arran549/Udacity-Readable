@@ -10,7 +10,7 @@ import { FETCH_ALL_POSTS, VOTE_ON_POST, DELETE_POST, SELECT_POST, CREATE_POST, E
 
 import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
 
-import { UPDATE_COMMENTS_FOR_POST, ADD_COMMENT_TO_POST, DELETE_COMMENT } from '../actions/comments.actions'
+import { UPDATE_COMMENTS_FOR_POST, ADD_COMMENT_TO_POST, DELETE_COMMENT, EDIT_COMMENT_TO_POST } from '../actions/comments.actions'
 
 const initialPostsState = {
     all: [],
@@ -148,6 +148,15 @@ function comments (state = intialCommentsState, action) {
                 ...state,
                 allIds: [...state.allIds, action.model.id],
                 byId: { ...state.byId, [action.model.id]: action.model }
+            }
+        }
+        case EDIT_COMMENT_TO_POST: {
+            return {
+                ...state,
+                byId: {
+                    ...state.byId,
+                    [action.model.id] : action.model
+                }
             }
         }
         case DELETE_COMMENT: {
