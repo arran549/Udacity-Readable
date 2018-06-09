@@ -5,25 +5,24 @@ import { Grid, Row, Col, Button, FormGroup, ControlLabel } from 'react-bootstrap
 import { v1 as uuid } from 'uuid'
 import { addPost } from '../readableAPI'
 import { createPostActionCreator } from '../actions/posts.actions'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 
 class CreatePost extends Component {
 
     constructor( props ) {
         super( props );
-        this.state = {};
-    }
-
-    createPost () {
-
+        this.state = {
+            fireRedirect: false
+        };
     }
 
     getTimestamp () {
-        return Math.round((new Date()).getTime() / 1000);
+        return (new Date()).getTime();
     }
 
     createPost ( form ) {
 
+        console.log("ADSASDASD");
         const { body, author, title } = form.submittedValues 
 
         const post = {
@@ -43,6 +42,7 @@ class CreatePost extends Component {
 
         addPost(post).then(() => {
             this.props.addPost(post)
+            this.setState({fireRedirect: true})
         })
         
     }
@@ -69,14 +69,15 @@ class CreatePost extends Component {
                                     </FormGroup>
                                 </Row>
                                 <Row>
-                                    <Link to={"/posts/" + this.props.category}>
-                                        <Button type="submit">Submit</Button>
-                                    </Link>
+                                    <Button type="submit">Submit</Button>
                                 </Row>
                             </Grid>
                             </form>
                         )}
                 </Form>
+                {this.state.fireRedirect && (
+                    <Redirect to={"/" + this.props.category} />
+                )}
 
             </div>)
 
