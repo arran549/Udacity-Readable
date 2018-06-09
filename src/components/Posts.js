@@ -16,7 +16,7 @@ class Posts extends React.Component {
     }
 
     state = {
-        sortByCategory: 'timestamp',
+        sortByCategory: 'voteScore',
         sortByAscending: false
     }
 
@@ -64,12 +64,12 @@ class Posts extends React.Component {
         const posts = this.orderPosts()
 
         return (
-            <div>
+            <div className="container">
                 <PageHeader>
-                    Posts {this.state.sortByCategory}
-                    
+                    Posts
                     <FormGroup controlId="orderDirection" className="pull-right">
-                        <FormControl componentClass="select" onChange={this.orderBy}>
+                        
+                        <FormControl componentClass="select" onChange={this.orderBy} defaultValue="descending">
                             <option value="ascending">Ascending</option>
                             <option value="descending">Descending</option>
                         </FormControl>
@@ -79,21 +79,26 @@ class Posts extends React.Component {
                         <ToggleButton value="voteScore" onClick={this.sortByScore}>Score</ToggleButton>
                         <ToggleButton value="timestamp" onClick={this.sortByDate}>Date</ToggleButton>
                     </ToggleButtonGroup>
-                    
+
+                    <div className="pull-right">
+                        
+                    </div>
                 </PageHeader>
                 <Panel>
                     <Panel.Heading>
                         <Panel.Title componentClass="h1">{this.props.selectedCategory} posts</Panel.Title>
                     </Panel.Heading>
                     <Panel.Body>
-                    { posts.length > 0 || (<Well>There are no posts to display</Well>) }
-                    {  posts && posts.map( (post) => ( 
-                        <div key={post.id}>
-                            <Post post={post}></Post>
-                        </div>
+                        { posts.length > 0 || (
+                            <div><Well>There are no posts to display</Well></div>
+                            ) }
+                        {  posts && posts.map( (post) => ( 
+                            <div key={post.id}>
+                                <Post post={post}></Post>
+                            </div>
 
-                    ))}
-
+                        ))}
+                        
                     </Panel.Body>
                 </Panel>
                 <CreatePostButton />
