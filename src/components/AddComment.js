@@ -39,12 +39,6 @@ class AddComment extends React.Component {
     
   }
 
-  componentDidMount () {
-    this.setState({
-      author: '',
-      input: ''
-    });
-  }
 
   getTimestamp () {
     return Math.round((new Date()).getTime() / 1000);
@@ -59,7 +53,10 @@ class AddComment extends React.Component {
   }
 
   openModal () {
-    this.setState({modalIsOpen: true});
+    this.setState({
+      modalIsOpen: true,
+      author: '',
+      input: ''});
   }
 
   closeModal () {
