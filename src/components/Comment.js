@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Badge, Row, Col } from 'react-bootstrap'
+import { Panel, Badge, Row, Col, Form } from 'react-bootstrap'
 import Timestamp from './Timestamp'
 import DeleteCommentButton from './DeleteCommentButton' 
 import EditComment from './EditComment'
@@ -16,9 +16,12 @@ class Comment extends Component {
             <div>
                 <Panel>
                 <Panel.Body>
+                    
                     <p>{comment.body}</p>
                     <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small></p>
-                    <DeleteCommentButton comment={comment} /><EditComment comment={comment} />
+                    <Form inline>
+                        <DeleteCommentButton comment={comment} /><EditComment comment={comment} />
+                    </Form>
                 </Panel.Body>
                 </Panel>
 
