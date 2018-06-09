@@ -15,7 +15,7 @@ import ViewPostButton from './ViewPostButton'
 import { getCommentsForPostActionCreator } from './../actions/posts.actions'
 import { updateCommentsForPostActionCreator } from './../actions/comments.actions'
 import { getAllCommentsForPost } from '../readableAPI';
-
+import EditPostButton from './EditPostButton';
 
 
 class PostDetail extends Component {
@@ -31,14 +31,20 @@ class PostDetail extends Component {
         if(!post) return (<div></div>);
 
         return (
-            <div>
-                <Panel.Heading><h1>{post.title} <Score score={post.voteScore} /></h1>
-                    <VoteOnPost post={post}></VoteOnPost>
+            <div class="container">
+                <Panel.Heading>
+                    <h1>{post.title} <Score score={post.voteScore} />
+                                <div class="pull-right inline" >
+                                    <VoteOnPost post={post}></VoteOnPost>
+                                </div>
+                            </h1>
+                    
                 </Panel.Heading>
+                <hr />
                 <Panel.Body>
                 <br />
                 <Row>
-                    <Col md={9}>
+                    <Col md={11}>
                         <p>{post.body}</p>
                         <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp} /></i></small></p>
                         <p><PostComments post={post}></PostComments></p>
@@ -46,9 +52,7 @@ class PostDetail extends Component {
 
                     <Col md={1}>
                         <DeletePostButton post={post}></DeletePostButton>       
-                        <Link to={"/posts/"+ this.props.post.id + "/edit"}>
-                            <Button>Edit</Button>
-                        </Link>                    
+                        <EditPostButton post={post}></EditPostButton>
                     </Col>
                 </Row>
                 <Row>
@@ -73,7 +77,7 @@ const mapStateToProps = (state, props) => {
 
     let comments = []
 
-    if(post.comments) {
+    if(selectedPostId && post && post.comments) {
         comments = post.comments.map((comment) => state.comments.byId[comment]);
     }
 
