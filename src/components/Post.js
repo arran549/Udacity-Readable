@@ -17,23 +17,24 @@ class Post extends Component {
         return (
             <div key={post.id}>
                 <Panel>
-                    <Panel.Heading>{post.title}</Panel.Heading>
                     <Panel.Body>
-                    <br />
                     <Row>
-                        <Col md={9}>
-                            <p>{post.body}</p>
+                        <Col md={10}>
+                            <h2>{post.title}
+                            <div className="pull-right">
+                                <VoteOnPost post={post}></VoteOnPost>
+                            </div>
+                            </h2>
+                            <h5>{post.body}</h5>
                             <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp}></Timestamp></i></small></p>
                             <p><PostComments post={post}></PostComments><Score score={post.voteScore} /></p>
                         </Col>
-                        <Col md={2}>
-                            <VoteOnPost post={post}></VoteOnPost>
-                        </Col>
                         <Col md={1}>
+                            <br/>
                             <DeletePostButton post={post}></DeletePostButton>
                             <ViewPostButton post={post}></ViewPostButton>
-                            
                         </Col>
+                        
                     </Row>
                     </Panel.Body>
                 </Panel>
