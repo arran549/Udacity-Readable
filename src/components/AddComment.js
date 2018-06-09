@@ -31,6 +31,7 @@ class AddComment extends React.Component {
     };
 
     this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.addComment = this.addComment.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -59,6 +60,10 @@ class AddComment extends React.Component {
 
   openModal () {
     this.setState({modalIsOpen: true});
+  }
+
+  closeModal () {
+    this.setState({modalIsOpen: false});
   }
 
   afterOpenModal () {
@@ -111,6 +116,7 @@ class AddComment extends React.Component {
                 </FormGroup>
                 
                 <Button onClick={this.addComment}>Add</Button>
+                <Button onClick={this.closeModal}>Close</Button>
           </form>
         </ReactModal>
       </div>
