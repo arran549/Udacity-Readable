@@ -35,6 +35,14 @@ class AddComment extends React.Component {
     this.addComment = this.addComment.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAuthor = this.handleAuthor.bind(this);
+    
+  }
+
+  componentDidMount () {
+    this.setState({
+      author: '',
+      input: ''
+    });
   }
 
   getTimestamp () {
