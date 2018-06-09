@@ -12,9 +12,11 @@ class CreatePostButton extends Component {
 
     render() {
         return (           
-            <Link to={"/posts/create"}>
-                <Button>Create</Button>
-            </Link>
+            <div>
+                <Link to={"/posts/create"}>
+                    <Button bsStyle="primary">Create Post</Button>
+                </Link>
+            </div>
         );
     }
 }
