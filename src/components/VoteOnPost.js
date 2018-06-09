@@ -22,7 +22,7 @@ class VoteOnPost extends React.Component {
         const { post } = this.props
 
         return (
-            <div>
+            <div className="pull-right">
                 <Button bsStyle="primary" onClick={() => this.vote(post.id, 'upVote')}>Vote Up</Button>
                 <Button bsStyle="default"  onClick={() => this.vote(post.id, 'downVote')}>Vote Down</Button>
             </div>
