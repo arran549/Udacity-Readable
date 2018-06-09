@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { editCommentToPost } from './../readableAPI'
 import { editCommentToPostActionCreator } from './../actions/comments.actions'
 import { v1 as uuid } from 'uuid'
+import DeleteCommentButton from './DeleteCommentButton';
+import {MdEdit} from 'react-icons/lib/md'
 
 const customStyles = {
   content : {
@@ -83,7 +85,8 @@ class EditComment extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.openModal}>Edit Comment</Button>
+        <Button onClick={this.openModal}>
+        <MdEdit icon="edit"></MdEdit>Edit Comment</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
