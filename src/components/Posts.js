@@ -6,8 +6,6 @@ import { Panel, PageHeader, Well, Button, DropdownButton, MenuItem, ButtonGroup,
 import { selectCategoryActionCreator } from '../actions/navigation.actions'
 import CreatePostButton from './CreatePostButton'
 
-
-
 class Posts extends React.Component {
 
     constructor() {
@@ -51,8 +49,6 @@ class Posts extends React.Component {
 
     orderPosts () {
         return this.props.posts.sort((a, b) => {
-            //console.log("a: ", a)
-            //console.log("b:", b)
             if(this.state.sortByAscending){
                 return a[this.state.sortByCategory] === b[this.state.sortByCategory] ? 0 :  a[this.state.sortByCategory] < b[this.state.sortByCategory] ? -1 : 1
             }
@@ -97,9 +93,6 @@ class Posts extends React.Component {
                         </div>
 
                     ))}
-                    <Link to="/posts" onClick={() => this.onSelectPosts()}>
-                        <Button>Udacity Posts</Button>
-                    </Link>
 
                     </Panel.Body>
                 </Panel>
