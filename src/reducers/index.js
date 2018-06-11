@@ -14,7 +14,8 @@ import { UPDATE_COMMENTS_FOR_POST, ADD_COMMENT_TO_POST, DELETE_COMMENT, EDIT_COM
 
 const initialPostsState = {
     all: [],
-    selectedPostId: null
+    selectedPostId: null,
+    isReady: false
 }
 
 function posts (state = initialPostsState, action) {
@@ -22,7 +23,8 @@ function posts (state = initialPostsState, action) {
         case FETCH_ALL_POSTS: {
             return {
                 ...state,
-                all: action.posts
+                all: action.posts,
+                isReady: true
             }
         }
         case VOTE_ON_POST: {
@@ -40,7 +42,6 @@ function posts (state = initialPostsState, action) {
             }
         }
         case DELETE_COMMENT: {
-            console.log("deleting comment on post");
             return {
                 ...state,
                 all: state.all.map((post, i) => post.id === action.postId ? {...post, comments: post.comments.filter(comment => comment !== action.commentId) } : post)
@@ -65,12 +66,14 @@ function posts (state = initialPostsState, action) {
             }
         }
         case UPDATE_COMMENTS_FOR_POST: {
-            console.log("Update comments for post : add comment ids", action.postId, state.all);
+
+            var commentIds = action.comments.map((comment) => (comment.id))
+
             return {
                 ...state,
                 all: state.all.map((post, i) => post.id == action.postId ? {
                     ...post,
-                    comments: [...post.comments || [], ...action.comments.map((comment) => (comment.id))]
+                    comments: [...commentIds]
                 } : post )
             }
         }
@@ -81,7 +84,6 @@ function posts (state = initialPostsState, action) {
             }
         }
         case EDIT_POST: {
-            console.log("Edit Post reducer:", action);
 
             const { id, author, title, body } = action.postFields;
 
