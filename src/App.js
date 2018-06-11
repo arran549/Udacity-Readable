@@ -22,7 +22,7 @@ class App extends Component {
 
     render() {
 
-        return (
+        return this.props.isReady ? (
             <div>
                 <MainMenu></MainMenu>
                     <Switch>
@@ -34,12 +34,12 @@ class App extends Component {
                         <Route path="/:category" component={Posts} />
                     </Switch>
             </div>
-        );
+        ) : <div> ...Loading </div>;
     }
 }
 
 const mapStateToProps = (state, props) => ({
-
+    isReady: state.posts.isReady
 })
 
 const mapDispatchToProps = dispatch => ({
