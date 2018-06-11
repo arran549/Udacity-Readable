@@ -21,7 +21,7 @@ class DeletePostButton extends Component {
         return (
             <div>
                 <Button bsStyle="danger" onClick={() => this.onDeletePost(post.id)}>
-                <MdDelete icon="delete"></MdDelete> Delete</Button>
+                <MdDelete icon="delete"></MdDelete> Delete Post</Button>
             </div>
         );
     }

@@ -95,7 +95,7 @@ class EditComment extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Edit Comment</h2>
+          <h2 ref={subtitle => this.subtitle = subtitle}> Edit Comment</h2>
 
           <div>Please enter your comment!</div>
           <form>

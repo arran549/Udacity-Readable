@@ -21,7 +21,7 @@ class DeleteCommentButton extends Component {
         return (
             <div>
                 <Button bsStyle="" onClick={() => this.onDeleteComment(comment.parentId, comment.id)}>
-                <MdDelete icon="delete"></MdDelete></Button>
+                <MdDelete icon="delete"></MdDelete> Delete Comment</Button>
             </div>
         );
     }

@@ -16,12 +16,16 @@ class Comment extends Component {
             <div>
                 <Panel>
                 <Panel.Body>
-                    
-                    <p>{comment.body}</p>
-                    <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small></p>
-                    <Form inline>
-                        <DeleteCommentButton comment={comment} /><EditComment comment={comment} />
-                    </Form>
+                    <Row>
+                        <Col md={10}>
+                            <p>{comment.body}</p>
+                            <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small></p>
+                        </Col>
+                        <Col md={2}>
+                            <EditComment comment={comment} />
+                            <DeleteCommentButton comment={comment} />
+                        </Col>
+                    </Row>
                 </Panel.Body>
                 </Panel>
 
