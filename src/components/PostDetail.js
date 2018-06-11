@@ -31,10 +31,10 @@ class PostDetail extends Component {
         if(!post) return (<div></div>);
 
         return (
-            <div class="container">
+            <div className="container">
                 <Panel.Heading>
                     <h1>{post.title} <Score score={post.voteScore} />
-                                <div class="pull-right inline" >
+                                <div className="pull-right inline" >
                                     <VoteOnPost post={post}></VoteOnPost>
                                 </div>
                             </h1>
@@ -44,15 +44,15 @@ class PostDetail extends Component {
                 <Panel.Body>
                 <br />
                 <Row>
-                    <Col md={11}>
+                    <Col md={10}>
                         <p>{post.body}</p>
                         <p><small>Written by: <b>{post.author}</b> | <i><Timestamp unixtimestamp={post.timestamp} /></i></small></p>
                         <p><PostComments post={post}></PostComments></p>
                     </Col>
 
-                    <Col md={1}>
-                        <DeletePostButton post={post}></DeletePostButton>       
+                    <Col md={2}>
                         <EditPostButton post={post}></EditPostButton>
+                        <DeletePostButton post={post}></DeletePostButton>     
                     </Col>
                 </Row>
                 <Row>
