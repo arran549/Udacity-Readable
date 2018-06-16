@@ -8,6 +8,7 @@ import { editCommentToPostActionCreator } from './../actions/comments.actions'
 import { v1 as uuid } from 'uuid'
 import DeleteCommentButton from './DeleteCommentButton';
 import {MdEdit} from 'react-icons/lib/md'
+import '../styling.button.css'
 
 const customStyles = {
   content : {
@@ -85,7 +86,7 @@ class EditComment extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.openModal}>
+        <Button className="button" onClick={this.openModal}>
         <MdEdit icon="edit"></MdEdit>Edit Comment</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}

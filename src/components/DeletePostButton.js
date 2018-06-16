@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { deletePostActionCreator } from './../actions/posts.actions'
 import { deletePost } from '../readableAPI'
 import { Button } from 'react-bootstrap'
-import {MdDelete} from 'react-icons/lib/md'
+import { MdDelete } from 'react-icons/lib/md'
+import '../styling.button.css'
 
 class DeletePostButton extends Component {
     state = {  }
@@ -20,7 +21,7 @@ class DeletePostButton extends Component {
 
         return (
             <div>
-                <Button bsStyle="danger" onClick={() => this.onDeletePost(post.id)}>
+                <Button className="button" bsStyle="danger" onClick={() => this.onDeletePost(post.id)}>
                 <MdDelete icon="delete"></MdDelete> Delete Post</Button>
             </div>
         );

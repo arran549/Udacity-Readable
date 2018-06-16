@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { addCommentToPost } from './../readableAPI'
 import { addCommentToPostActionCreator } from './../actions/comments.actions'
 import { v1 as uuid } from 'uuid'
+import '../styling.button.css'
 
 const customStyles = {
   content : {
@@ -89,7 +90,7 @@ class AddComment extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.openModal}>Add Comment</Button>
+        <Button className="button" onClick={this.openModal}>Add Comment</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
