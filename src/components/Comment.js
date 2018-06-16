@@ -22,7 +22,7 @@ class Comment extends Component {
                         <Col md={1} >
                             <VoteOnComment comment={comment}/>
                         </Col>
-                        <Col md={8}>
+                        <Col md={9}>
                             <p>{comment.body}</p>
                             <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small></p>
                         </Col>
