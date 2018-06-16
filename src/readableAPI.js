@@ -104,11 +104,12 @@ export const getCommentDetails = (id) => {
     .then(res => res.json())
 }
 
-export const voteOnComment = (id, wayOfVote) => {
+export const voteOnComment = (id, option) => {
+    console.log("vote on comment", id, option)
    return fetch(`${api}/comments/${id}`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ wayOfVote })
+        body: JSON.stringify({ option })
     })
     .then(res => res.json())
 }

@@ -33,7 +33,7 @@ export function posts (state = initialPostsState, action) {
         case DELETE_COMMENT: {
             return {
                 ...state,
-                all: state.all.map((post, i) => post.id === action.postId ? {...post, comments: post.comments.filter(comment => comment !== action.commentId) } : post)
+                all: state.all.map((post, i) => post.id === action.postId ? {...post, comments: post.comments.filter(comment => comment !== action.commentId), commentCount: post.commentCount - 1 } : post)
             }
         }
         case SELECT_POST: {

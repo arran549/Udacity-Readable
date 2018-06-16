@@ -1,4 +1,6 @@
-import { UPDATE_COMMENTS_FOR_POST, ADD_COMMENT_TO_POST, DELETE_COMMENT, EDIT_COMMENT_TO_POST } from '../actions/actionTypes'
+import { UPDATE_COMMENTS_FOR_POST, ADD_COMMENT_TO_POST, DELETE_COMMENT, EDIT_COMMENT_TO_POST, VOTE_ON_COMMENT } from '../actions/actionTypes'
+import { updateComment } from '../readableAPI';
+import { combineReducers } from '../../../../../../AppData/Local/Microsoft/TypeScript/2.6/node_modules/redux';
 
 const intialCommentsState = {
     byId: {},
@@ -42,8 +44,6 @@ export function comments (state = intialCommentsState, action) {
         }
         case DELETE_COMMENT: {
 
-            console.log('delete comment', action);
-
             delete state.byId[action.commentId];
 
             return {
@@ -52,6 +52,25 @@ export function comments (state = intialCommentsState, action) {
                 byId: {
                     ...state.byId
                 }
+            }
+        }
+        case VOTE_ON_COMMENT: {
+
+            const increment = action.option === 'upVote' ? 1 : -1
+
+            const comment = state.byId[action.id]
+
+            const updatedComment = {
+                 ...comment,
+                 voteScore: comment.voteScore + increment
+            }
+
+            return {
+                ...state,   
+                byId: {
+                    ...state.byId,
+                    [action.id] : updatedComment
+                }  
             }
         }
         

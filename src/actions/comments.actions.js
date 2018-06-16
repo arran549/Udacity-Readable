@@ -9,7 +9,7 @@ export const updateCommentsForPostActionCreator = (postId, comments) => {
     }
 }
 
-export const voteOnPostActionCreator = (id, option) => {
+export const voteOnCommentActionCreator = (id, option) => {
     return {
         type: VOTE_ON_COMMENT,
         id,

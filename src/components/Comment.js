@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Panel, Badge, Row, Col, Form } from 'react-bootstrap'
+import { Panel, Badge, Row, Col, Form, ButtonGroup } from 'react-bootstrap'
 import Timestamp from './Timestamp'
 import DeleteCommentButton from './DeleteCommentButton' 
 import EditComment from './EditComment'
 import Score from './Score'
+import VoteOnComment from './VoteOnComment'
 
 
 class Comment extends Component {
@@ -18,13 +19,18 @@ class Comment extends Component {
                 <Panel>
                 <Panel.Body>
                     <Row>
-                        <Col md={10}>
+                        <Col md={1} >
+                            <VoteOnComment comment={comment}/>
+                        </Col>
+                        <Col md={8}>
                             <p>{comment.body}</p>
-                            <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small> <Score score={comment.voteScore} /></p>
+                            <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small></p>
                         </Col>
                         <Col md={2}>
-                            <EditComment comment={comment} />
-                            <DeleteCommentButton comment={comment} />
+                            <ButtonGroup vertical>
+                                <EditComment comment={comment} />
+                                <DeleteCommentButton comment={comment} />
+                            </ButtonGroup>
                         </Col>
                     </Row>
                 </Panel.Body>

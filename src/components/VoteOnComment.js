@@ -1,30 +1,40 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { voteOnCommentActionCreator } from '../actions/posts.actions'
-import { voteComment } from '../readableAPI'
-import { Button } from 'react-bootstrap'
+import { voteOnCommentActionCreator } from '../actions/comments.actions'
+import { voteOnComment } from '../readableAPI'
+import { Button, ButtonGroup, Label } from 'react-bootstrap'
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/lib/md'
+import Score from './Score'
+
+const scoreStyle = {
+    color: 'black',
+    fontWeight: 'bold'
+}
 
 class VoteOnComment extends React.Component {
 
-    commponentDidMount () {
-        
-    }
-
     onVote(id, option) {
-        voteComment(id, option).then((res) => {
+        voteOnComment(id, option).then((res) => {
             console.log("result", id)
-            this.props.votePost(id, option)
+            this.props.voteComment(id, option)
         })         
     }
 
     render () {
 
-        const { post } = this.props
+        const { comment } = this.props
 
         return (
             <div>
-                <Button bsStyle="primary" onClick={() => this.onVote(post.id, 'upVote')}>Vote Up</Button>
-                <Button bsStyle="default"  onClick={() => this.vote(post.id, 'downVote')}>Vote Down</Button>
+                <ButtonGroup vertical>
+                <Button bsStyle="default" onClick={() => this.onVote(comment.id, 'upVote')}>
+                    <MdKeyboardArrowUp />
+                </Button>
+                <Button disabled style={scoreStyle}> {comment.voteScore} </Button>
+                <Button bsStyle="default"  onClick={() => this.onVote(comment.id, 'downVote')}>
+                    <MdKeyboardArrowDown />
+                </Button>
+                </ButtonGroup>
             </div>
         )
     }
