@@ -27,8 +27,10 @@ class App extends Component {
                 <MainMenu></MainMenu>
                     <Switch>
                         <Route path="/posts/create" component={CreatePost} />
-                        <Route exact path="/:category/:id/edit" component={EditPost} />
-                        <Route exact path="/:category/:id" component={PostDetail} />
+                        <Route path="/:category/:id/edit" component={EditPost} />
+                        {    this.props.categories.map((cat) => ( 
+                            <Route key={cat.path} path={`/${cat.path}/:id`} component={PostDetail} />
+                        ))}
                         <Route exact path="/" component={Posts} />
                         <Route exact path="/posts"  component={Posts} />
                         <Route path="/:category" component={Posts} />
@@ -39,7 +41,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    isReady: state.posts.isReady
+    isReady: state.posts.isReady,
+    categories: state.navigation.categories
 })
 
 const mapDispatchToProps = dispatch => ({

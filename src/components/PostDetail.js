@@ -16,6 +16,7 @@ import { getCommentsForPostActionCreator } from './../actions/posts.actions'
 import { updateCommentsForPostActionCreator } from './../actions/comments.actions'
 import { getAllCommentsForPost } from '../readableAPI';
 import EditPostButton from './EditPostButton';
+import PostNotFound from './PostNotFound'
 
 
 class PostDetail extends Component {
@@ -28,7 +29,7 @@ class PostDetail extends Component {
 
         const { post } = this.props;
 
-        if(!post) return (<div></div>);
+        if(!post) return (<PostNotFound />);
 
         return (
             <div className="container">
