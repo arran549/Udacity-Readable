@@ -6,7 +6,7 @@ import Timestamp from  './Timestamp'
 import Score from './Score'
 import DeletePostButton from './DeletePostButton'
 import ViewPostButton from './ViewPostButton'
-
+import EditPostButton from './EditPostButton'
 
 class Post extends Component {
     state = {  }
@@ -31,8 +31,9 @@ class Post extends Component {
                         </Col>
                         <Col md={2}>
                             <br/>
-                            <DeletePostButton post={post}></DeletePostButton>
-                            <ViewPostButton post={post}></ViewPostButton>
+                            <ViewPostButton post={post} />
+                            <EditPostButton post={post} />
+                            <DeletePostButton post={post} />
                         </Col>
                     </Row>
                     </Panel.Body>
