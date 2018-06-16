@@ -1,4 +1,4 @@
-import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/navigation.actions'
+import { SELECT_CATEGORY, UPDATE_CATEGORIES } from '../actions/actionTypes'
 
 const initialNavigationState = {
     selectedCategory: 'all',

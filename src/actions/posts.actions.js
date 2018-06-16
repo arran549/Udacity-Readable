@@ -1,11 +1,4 @@
-
-export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS'
-export const UPDATE_POST = 'UPDATE_POST'
-export const VOTE_ON_POST = 'VOTE_ON_POST'
-export const DELETE_POST = 'DELETE_POST'
-export const SELECT_POST = 'SELECT_POST'
-export const CREATE_POST = 'CREATE_POST'
-export const EDIT_POST = 'EDIT_POST'
+import { FETCH_ALL_POSTS, UPDATE_POST, VOTE_ON_POST, DELETE_POST, SELECT_POST, CREATE_POST, EDIT_POST } from './actionTypes'
 
 export const fetchAllPostsActionCreator = (posts) => {
     console.log('fetch all posts - action creator', posts)
