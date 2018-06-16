@@ -5,7 +5,7 @@ import ViewPostsButton from './ViewPostsButton'
 
 class PageNotFound extends Component {
 
-    render() {
+    render () {
         return (
             <div class="container">
                 <h1>404: Page Not Found</h1>
