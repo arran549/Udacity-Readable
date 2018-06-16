@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Text, TextArea } from "react-form";
+import { Form, Text, TextArea, Select } from "react-form";
 import { Grid, Row, Col, Button, FormGroup, ControlLabel } from 'react-bootstrap';
 import { v1 as uuid } from 'uuid'
 import { addPost } from '../readableAPI'
 import { createPostActionCreator } from '../actions/posts.actions'
 import { Link, withRouter, Redirect } from 'react-router-dom'
+
 
 class CreatePost extends Component {
 
@@ -16,14 +17,20 @@ class CreatePost extends Component {
         };
     }
 
+    categoryOptions = [
+        {label: 'React', value: 'react' },
+        {label: 'Redux', value: 'redux' },
+        {label: 'Udacity', value: 'udacity' },
+    ]
+
     getTimestamp () {
         return (new Date()).getTime();
     }
 
     createPost ( form ) {
 
-        console.log("ADSASDASD");
-        const { body, author, title } = form.submittedValues 
+        console.log(form.submittedValues);
+        const { body, author, title, category } = form.submittedValues 
 
         const post = {
             id: uuid(),
@@ -31,7 +38,7 @@ class CreatePost extends Component {
             title: title,
             body: body,
             author: author,
-            category: "react",
+            category: category,
             voteScore: 1,
             deleted: false,
             commentCount: 0,
@@ -44,10 +51,12 @@ class CreatePost extends Component {
             this.props.addPost(post)
             this.setState({fireRedirect: true})
         })
-        
     }
 
     render () {
+
+        console.log(this.props.categoryOptions);
+
         return (
             <div>
                 <Form onSubmit={submittedValues => this.createPost( { submittedValues } )}>
@@ -55,6 +64,10 @@ class CreatePost extends Component {
                             <form onSubmit={formApi.submitForm}>
                             <Grid>
                                 <Row>
+                                <FormGroup>
+                                        <ControlLabel>Category</ControlLabel>
+                                        <Select className="form-control" field="category" options={this.categoryOptions} defaultValue={this.categoryOptions[0].value} placeholder="Category" />
+                                    </FormGroup>
                                     <FormGroup>
                                         <ControlLabel>Author</ControlLabel>
                                         <Text className="form-control" field="author" placeholder="Author" />
@@ -80,12 +93,12 @@ class CreatePost extends Component {
                 )}
 
             </div>)
-
     }
 }
 
 const mapStateToProps = (state, props) => ({
-    category: state.navigation.selectedCategory
+    category: state.navigation.selectedCategory,
+    categories: state.navigation.categories
 })
 
 const mapDispatchToProps = dispatch => ({
