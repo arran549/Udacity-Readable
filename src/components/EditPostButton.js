@@ -8,7 +8,7 @@ class EditPostButton extends Component {
     state = {  }
     render() {
         return (
-            <Link to={"/posts/"+ this.props.post.id + "/edit"}>
+            <Link to={`/${this.props.post.category}/`+ this.props.post.id + "/edit"}>
                 <Button className="button">
                     <MdEdit icon="edit"></MdEdit> Edit Post
                 </Button>

@@ -20,7 +20,7 @@ class ViewPostButton extends Component {
         console.log(this.props.id)
         return (
             
-            <Link to={"/posts/"+ this.props.post.id}>
+            <Link to={`/${this.props.post.category}/`+ this.props.post.id}>
                 <Button className="button" onClick={() => this.onViewPost(this.props.post.id)}>
                 <MdOpenInNew></MdOpenInNew> View</Button>
             </Link>

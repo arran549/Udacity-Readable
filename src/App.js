@@ -27,8 +27,8 @@ class App extends Component {
                 <MainMenu></MainMenu>
                     <Switch>
                         <Route path="/posts/create" component={CreatePost} />
-                        <Route path="/posts/:id/edit" component={EditPost} />
-                        <Route path="/posts/:id" component={PostDetail} />
+                        <Route exact path="/:category/:id/edit" component={EditPost} />
+                        <Route exact path="/:category/:id" component={PostDetail} />
                         <Route exact path="/" component={Posts} />
                         <Route exact path="/posts"  component={Posts} />
                         <Route path="/:category" component={Posts} />
