@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import { selectPostActionCreator } from './../actions/posts.actions'
 import { Button } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
-import { MdView } from 'react-icons/lib/md'
+import { MdOpenInNew } from 'react-icons/lib/md'
 import { LinkContainer } from 'react-router-bootstrap';
-
-
+import '../styling.button.css'
 
 class ViewPostButton extends Component {
     state = {  }
@@ -22,7 +21,8 @@ class ViewPostButton extends Component {
         return (
             
             <Link to={"/posts/"+ this.props.post.id}>
-                <Button onClick={() => this.onViewPost(this.props.post.id)}>View</Button>
+                <Button className="button" onClick={() => this.onViewPost(this.props.post.id)}>
+                <MdOpenInNew></MdOpenInNew> View</Button>
             </Link>
             
         );

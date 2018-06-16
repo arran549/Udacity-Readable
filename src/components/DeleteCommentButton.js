@@ -4,6 +4,7 @@ import { deleteCommentActionCreator } from './../actions/comments.actions'
 import { deleteComment } from '../readableAPI'
 import { Button } from 'react-bootstrap'
 import {MdDelete} from 'react-icons/lib/md'
+import '../styling.button.css'
 
 class DeleteCommentButton extends Component {
     state = {  }
@@ -20,7 +21,7 @@ class DeleteCommentButton extends Component {
 
         return (
             <div>
-                <Button bsStyle="" onClick={() => this.onDeleteComment(comment.parentId, comment.id)}>
+                <Button className="button" bsStyle="" onClick={() => this.onDeleteComment(comment.parentId, comment.id)}>
                 <MdDelete icon="delete"></MdDelete> Delete Comment</Button>
             </div>
         );

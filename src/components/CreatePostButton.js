@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { MdView } from 'react-icons/lib/md'
 import { LinkContainer } from 'react-router-bootstrap';
-
+import '../styling.button.css'
 
 class CreatePostButton extends Component {
     state = {  }
@@ -14,7 +14,7 @@ class CreatePostButton extends Component {
         return (           
             <div>
                 <Link to={"/posts/create"}>
-                    <Button bsStyle="primary">Create Post</Button>
+                    <Button className="button" bsStyle="primary">Create Post</Button>
                 </Link>
             </div>
         );
