@@ -86,7 +86,7 @@ class EditComment extends React.Component {
   render() {
     return (
       <div>
-        <Button className="button" onClick={this.openModal}>
+        <Button bsSize="small" className="button" onClick={this.openModal}>
         <MdEdit icon="edit"></MdEdit>Edit Comment</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}

@@ -26,7 +26,7 @@ class VoteOnComment extends React.Component {
 
         return (
             <div>
-                <ButtonGroup vertical>
+                <ButtonGroup vertical bsSize="xsmall">
                 <Button bsStyle="default" onClick={() => this.onVote(comment.id, 'upVote')}>
                     <MdKeyboardArrowUp />
                 </Button>

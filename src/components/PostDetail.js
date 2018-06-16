@@ -41,9 +41,8 @@ class PostDetail extends Component {
                             </h1>
                     
                 </Panel.Heading>
-                <hr />
                 <Panel.Body>
-                <br />
+                
                 <Row>
                     <Col md={10}>
                         <p>{post.body}</p>
@@ -56,6 +55,7 @@ class PostDetail extends Component {
                         <DeletePostButton post={post}></DeletePostButton>     
                     </Col>
                 </Row>
+                <hr /> 
                 <Row>
                     {this.props.comments && this.props.comments.map((comment) => (
                         <Comment key={comment.id} comment={comment}></Comment>

@@ -27,10 +27,8 @@ class Comment extends Component {
                             <p><small>Written by: <b>{comment.author}</b></small> | <small><Timestamp unixtimestamp={comment.timestamp}></Timestamp></small></p>
                         </Col>
                         <Col md={2}>
-                            <ButtonGroup vertical>
-                                <EditComment comment={comment} />
-                                <DeleteCommentButton comment={comment} />
-                            </ButtonGroup>
+                            <EditComment comment={comment} />
+                            <DeleteCommentButton comment={comment} />
                         </Col>
                     </Row>
                 </Panel.Body>
