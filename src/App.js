@@ -36,6 +36,7 @@ class App extends Component {
                             <Route key={cat.path} exact path={`/${cat.path}`} component={Posts} />
                         ))}
                         <Route exact path="/" component={Posts} />
+                        <Route exact path="/all" component={Posts} />
                         <Route exact path="/posts"  component={Posts} />
                         <Route component={PageNotFound} />
                     </Switch>
