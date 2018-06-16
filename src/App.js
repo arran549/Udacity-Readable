@@ -11,6 +11,7 @@ import { getAllPosts } from './readableAPI'
 import PostDetail from './components/PostDetail';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/EditPost';
+import PageNotFound from './components/PageNotFound'
 
 class App extends Component {
 
@@ -28,12 +29,15 @@ class App extends Component {
                     <Switch>
                         <Route path="/posts/create" component={CreatePost} />
                         <Route path="/:category/:id/edit" component={EditPost} />
-                        {    this.props.categories.map((cat) => ( 
-                            <Route key={cat.path} path={`/${cat.path}/:id`} component={PostDetail} />
+                        {this.props.categories.map((cat) => ( 
+                                <Route key={cat.path} path={`/${cat.path}/:id`} component={PostDetail} />
+                        ))}
+                        {this.props.categories.map((cat) => ( 
+                            <Route key={cat.path} exact path={`/${cat.path}`} component={Posts} />
                         ))}
                         <Route exact path="/" component={Posts} />
                         <Route exact path="/posts"  component={Posts} />
-                        <Route path="/:category" component={Posts} />
+                        <Route component={PageNotFound} />
                     </Switch>
             </div>
         ) : <div> ...Loading </div>;
