@@ -20,7 +20,7 @@ export const voteOnCommentActionCreator = (id, option) => {
 export const addCommentToPostActionCreator = (model) => {
 
     model.parentDeleted = false;
-    model.voteScore = 0;
+    model.voteScore = 1;
     model.deleted = false;
 
 
