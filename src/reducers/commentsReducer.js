@@ -1,6 +1,4 @@
 import { UPDATE_COMMENTS_FOR_POST, ADD_COMMENT_TO_POST, DELETE_COMMENT, EDIT_COMMENT_TO_POST, VOTE_ON_COMMENT } from '../actions/actionTypes'
-import { updateComment } from '../readableAPI';
-import { combineReducers } from '../../../../../../AppData/Local/Microsoft/TypeScript/2.6/node_modules/redux';
 
 const intialCommentsState = {
     byId: {},
